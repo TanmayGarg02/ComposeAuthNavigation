@@ -9,6 +9,7 @@ import androidx.credentials.GetCredentialRequest
 import androidx.credentials.exceptions.GetCredentialException
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
+import com.google.firebase.BuildConfig
 import com.google.firebase.Firebase
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.auth
@@ -35,7 +36,7 @@ class GoogleAuthClient(
         try {
             val googleIdOption = GetGoogleIdOption.Builder()
                 .setFilterByAuthorizedAccounts(false)
-                .setServerClientId("92975366539-t64vhsh9vagmcdfbqb31m0avp5ls7l08.apps.googleusercontent.com")
+                .setServerClientId(com.example.authapp.BuildConfig.WEB_CLIENT_ID)
                 .setAutoSelectEnabled(true)
                 .build()
 
