@@ -10,21 +10,33 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import com.example.authapp.auth.SignInState
 
 @Composable
-fun LoginScreen(onLoginClick: () -> Unit) {
+fun LoginScreen(
+    state: SignInState,
+    onSignInClick: () -> Unit
+) {
+    val context = LocalContext.current
+
+    androidx.compose.runtime.LaunchedEffect(key1 = state.signInError) {
+        state.signInError?.let { error ->
+            android.widget.Toast.makeText(context, error, android.widget.Toast.LENGTH_LONG).show()
+        }
+    }
+
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            Text(text = "Login Screen")
+            Text(text = "Sign in to continue")
             Spacer(modifier = Modifier.height(16.dp))
-            Button(onClick = onLoginClick) {
-                Text("Sign in (Fake)")
+            Button(onClick = onSignInClick) {
+                Text("Sign in with Google")
             }
         }
     }
 }
-
 @Composable
 fun HomeScreen(onDetailClick: () -> Unit, onLogoutClick: () -> Unit) {
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {

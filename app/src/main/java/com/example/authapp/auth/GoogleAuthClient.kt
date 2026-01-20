@@ -106,8 +106,6 @@ class GoogleAuthClient(
         }
     }
 }
-
-// Data classes for easy UI consumption
 data class SignInResult(
     val data: UserData?,
     val errorMessage: String?
